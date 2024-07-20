@@ -7,3 +7,6 @@
 [submodule "wet/src/guts_utils_py"]
 	path = wet/src/guts_utils_py
 	url = git@github.com:rislab/guts_utils_py.git
+[submodule "dry/src/eigen_colcon"]
+	path = dry/src/eigen_colcon
+	url = git@github.com:gira3d/eigen_colcon.git
