@@ -20,4 +20,4 @@ python test_multirobot_and_tracks.py
 ```
 
 ## Supported Operating Systems
-This software was tested on Ubuntu 20.04 and macos Sonoma.
+This software was tested on Ubuntu 20.04.
