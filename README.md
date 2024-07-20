@@ -4,6 +4,7 @@
 
 ```bash
 git clone git@github.com:rislab/guts-sandbox.git --recursive
+cd guts-sandbox/
 python3 -m venv .venv
 source .venv/bin/activate
 pip install --upgrade pip
