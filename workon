@@ -20,11 +20,11 @@ esac
 if test "${machine}" = "Mac" 
 then
     echo "Setting DYLD_LIBRARY_PATH to include shared library files."
-    export DYLD_LIBRARY_PATH='${DYLD_LIBRARY_PATH}:${CWD}/wet/install/guts_utils'
+    export DYLD_LIBRARY_PATH="${DYLD_LIBRARY_PATH}:${CWD}/wet/install/guts_utils"
 elif test "${machine}" = "Linux"
 then
     echo "Setting LD_LIBRARY_PATH to include shared library files"
-    export LD_LIBRARY_PATH='${LD_LIBRARY_PATH}:${CWD}/wet/install/guts_utils'
+    export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${CWD}/wet/install/guts_utils"
 else
     echo "Operating system ${machine} not supported."
 fi
