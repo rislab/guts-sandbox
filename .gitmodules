@@ -1,0 +1,9 @@
+[submodule "dry/src/pybind11_colcon"]
+	path = dry/src/pybind11_colcon
+	url = git@github.com:gira3d/pybind11_colcon.git
+[submodule "wet/src/guts_utils"]
+	path = wet/src/guts_utils
+	url = git@github.com:rislab/guts_utils.git
+[submodule "wet/src/guts_utils_py"]
+	path = wet/src/guts_utils_py
+	url = git@github.com:rislab/guts_utils_py.git

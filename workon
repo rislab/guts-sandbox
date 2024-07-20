@@ -1,0 +1,63 @@
+#!/bin/bash
+
+# Get current working directory
+CWD="$(pwd)"
+DRY_INSTALL_DIR="${CWD}/dry/install"
+WET_INSTALL_DIR="${CWD}/wet/install"
+
+# Get operating system type
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     machine=Linux;;
+    Darwin*)    machine=Mac;;
+    CYGWIN*)    machine=Cygwin;;
+    MINGW*)     machine=MinGw;;
+    MSYS_NT*)   machine=Git;;
+    *)          machine="UNKNOWN:${unameOut}"
+esac
+
+# Only tested on macos Sonoma 14.4.1 and Ubuntu 20.04
+if test "${machine}" = "Mac" 
+then
+    echo "Setting DYLD_LIBRARY_PATH to include shared library files."
+    export DYLD_LIBRARY_PATH='${DYLD_LIBRARY_PATH}:${CWD}/wet/install/guts_utils'
+elif test "${machine}" = "Linux"
+then
+    echo "Setting LD_LIBRARY_PATH to include shared library files"
+    export LD_LIBRARY_PATH='${LD_LIBRARY_PATH}:${CWD}/wet/install/guts_utils'
+else
+    echo "Operating system ${machine} not supported."
+fi
+
+# Source the virtual environment
+if [ -d ./.venv ]; then
+    source ./.venv/bin/activate
+fi
+
+# Source all dry packages
+if [ -f $DRY_INSTALL_DIR/setup.sh ]; then
+    source $DRY_INSTALL_DIR/setup.sh
+    for f in ./dry/install/*; do
+        if [ -d "$f" ]; then
+            PACKAGE_DIR="$( basename "$f" )"
+            package="$DRY_INSTALL_DIR/$PACKAGE_DIR"
+            eval 'export PYTHONPATH=$package:$PYTHONPATH'
+            eval 'export PATH=$package:$PATH'
+        fi
+    done
+fi
+
+# Source all wet packages
+if [ -f $WET_INSTALL_DIR/setup.sh ]; then
+   source $WET_INSTALL_DIR/setup.sh
+   for f in ./wet/install/*; do
+       if [ -d "$f" ]; then
+           PACKAGE_DIR="$( basename "$f" )"
+           package="$WET_INSTALL_DIR/$PACKAGE_DIR"
+           eval 'export PYTHONPATH=$package:$PYTHONPATH'
+           eval 'export PATH=$package:$PATH'
+       fi
+   done
+fi
+
+eval 'export PYTHONWARNINGS="ignore"'
