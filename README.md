@@ -1,3 +1,5 @@
+[![](./data/splash.png)](https://youtu.be/xgLnS2IFCQQ)
+
 # GUTS Sandbox
 
 ## Installation
